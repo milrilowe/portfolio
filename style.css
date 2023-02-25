@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700');
+
+:root {
+  --primary_color: #282830;
+  --secondary_color: #000;
+  --tertiary_color: #fff;
+  --quaternary_color: #ff8514;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  width: 100%;
+  overflow: hidden;
+  background: var(--primary_color);
+}
+
+section {
+  width: 100%;
+  position: relative;
+}
+
+.navbar {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2vw 6vw;
+  background-color: var(--primary_color);
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 3vw;
+  color: var(--tertiary_color);
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.menuitems {
+  display: flex;
+  margin: auto 0;
+}
+
+.menuitems li {
+  list-style: none;
+  margin: 0 1.5vw;
+
+}
+
+.menuitems li a {
+  display: block;
+  color: var(--tertiary_color);
+  font-size: 1.5vw;
+  letter-spacing: 4px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menuitems li:hover a {
+  color: var(--quaternary_color);
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  position: relative;
+}
+
+.text_container {
+  width: 50%;
+  padding-left: 5rem;
+  padding-top: 5rem;
+
+}
+
+.text_container h1 {
+  font-size: 10vw;
+  font-weight: 900;
+  line-height: 10vw;
+  text-transform: capitalize;
+}
+
+.text_container h1::first-line {
+  color: var(--tertiary_color);
+  letter-spacing: 5px;
+  text-shadow: 0 5px 10px rgba(0,0,0,0.5);
+
+}
+
+.text_container h2 {
+  color: var(--tertiary_color);
+  font-size: 2vw;
+  font-weight: 300;
+  text-align: left;
+  margin-right: 10vw;
+  text-transform: capitalize;
+}
+
+.text_container .btn {
+  display: inline-block;
+  color: #222;
+  background: var(--tertiary_color);
+  font-size: 1.5vw;
+  text-decoration: none;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  padding: 6px 15px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+  transition: 0.3s ease;
+}
+
+.text_container .btn:hover {
+  letter-spacing: 2px;
+  padding: 6px 18px;
+  background-color: var(--quaternary_color);
+}
+
+.image_container {
+  display: flex;
+  justify-content: center;
+}
+
+.imgbox {
+  position: relative;
+  min-width: 100vw;
+  z-index: 1;
+}
+
+.imgbox img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.icons {
+  position: fixed;
+  top: 50%;
+  right: -15vw;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.icons .fa {
+  width: 20vw;
+  padding: 1vw;
+  font-size: 2.5vw;
+  cursor: pointer;
+  background: var(--tertiary_color);
+  transition: 0.5s ease;
+  border: solid;
+  border-color: var(--tertiary_color);
+  margin-top: 10px;
+
+}
+
+.icons .fa:hover {
+  color: var(--quaternary_color);
+  background-color: var(--primary_color);
+  border-color: var(--secondary_color);
+  transform: translateX(-1vw);
+}
+
+.icons .fa span {
+  position: relative;
+  font-size: 1.8vw;
+  bottom: 0.3vw;
+  margin-left: 1.8vw;
+
+}
+
+.icons a {
+  color: var(--secondary_color);
+}
+
+.animblob {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  height: 40vw;
+  width: 40vw;
+  transform: translate(-50%, -50%);
+  background: var(--quaternary_color);
+  animation: animate_blob 8s linear infinite;
+}
+
+@keyframes animate_blob {
+  0%, 100% {
+    border-radius: 65% 75% 70% 35% / 70% 50% 100% 40%;
+  }
+
+  25% {
+    border-radius: 75% 65% 50% 55% / 60% 50% 90% 50%;
+  }
+
+  50% {
+    border-radius: 85% 55% 55% 85% / 60% 80% 50% 90%;
+  }
+
+  75% {
+    border-radius: 55% 85% 80% 60% / 90% 50% 60% 80%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  body {
+    overflow: auto;
+  }
+
+  .container {
+    flex-wrap: wrap;
+  }
+
+  .text_container {
+    width: 100%;
+    pad: 15vw 10vw;
+    z-index: 100;
+  }
+
+  .text_container h1 {
+    font-size: 18vw;
+    line-height: 18vw;
+  }
+
+  .text_container h2 {
+    font-size: 5vw;
+  }
+
+  .text_container p {
+    font-size: 3vw;
+  }
+
+  .text_container btn {
+    margin-top: 2vw;
+    font-size: 2.5vw;
+  }
+
+  .image_container {
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .icons {
+    position: fixed;
+    z-index: 100;
+  }
+
+  .icons .fa {
+    padding: 1.7vw;
+  }
+
+  .icons .fa:hover {
+    transform: translateX(-10vw);
+  }
+
+  .animblob {
+    height: 80vw;
+    width: 80vw;
+  }
+}
+
+@media screen and (min-width:681px) {
+
+}
