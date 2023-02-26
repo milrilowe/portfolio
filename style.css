@@ -67,18 +67,23 @@ section {
   color: var(--quaternary_color);
 }
 
-.container {
+.page {
   display: flex;
   max-height: 100vh;
+  height: 100vh;
   justify-content: center;
   position: relative;
   flex-wrap: wrap;
+  padding-top: 5vw;
 }
+
 
 .text_container {
   width: 100%;
+  height: 40vh;
   padding: 15vw 10vw;
   z-index: 100;
+  position: relative;
 }
 
 .text_container h1 {
@@ -131,11 +136,11 @@ section {
   display: flex;
   justify-content: center;
   width: 100vw;
+  height: 50vh;
   overflow: hidden;
 }
 
 .imgbox {
-  position: relative;
   min-width: 100vw;
   z-index: 1;
 }
@@ -219,7 +224,7 @@ section {
 }
 
 @media screen and (max-width: 750px) {
-  .container {
+  .page {
     max-height: 100vh;
   }
 
@@ -238,7 +243,7 @@ section {
 
 @media screen and (min-width: 591px) and (max-width: 750px) {
   .imgbox img {
-    position: fixed;
+    position: absolute;
     max-height: 60vh;
     width: auto;
     bottom: 0;
@@ -248,7 +253,7 @@ section {
 
 @media screen and (max-height: 900px) {
   .imgbox img {
-    position: fixed;
+    position: absolute;
     max-height: 60vh;
     width: auto;
     bottom: 0;
@@ -258,7 +263,7 @@ section {
 
 @media screen and (min-width: 751px) and (max-width: 1150px) {
   .imgbox img {
-    position: fixed;
+    position: absolute;
     max-height: 80vh;
     width: auto;
     bottom: 0;
@@ -267,7 +272,7 @@ section {
 }
 
 @media screen and (min-width: 751px) {
-  .container {
+  .page {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -290,7 +295,7 @@ section {
   }
 
   .imgbox img {
-    position: fixed;
+    position: absolute;
     height: auto;
     width: auto;
     bottom: 0;
@@ -322,10 +327,15 @@ section {
   transform: translate(-50%, -50%);
   background-color: var(--primary_color);
   animation: modal_slide .3s linear;
+  border: inset;
 }
 
-.section .dim {
+object p {
+  padding: 2vw;
+}
 
+object p a {
+  color: var(--quaternary_color)
 }
 
 @keyframes modal_slide {

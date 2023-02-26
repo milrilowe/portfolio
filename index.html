@@ -15,7 +15,7 @@
       <div class="popup-content">
         <object id="resume" data="./assets/Miles Owens Resume.pdf" type="application/pdf">
           <p>Your web browser doesn't have a PDF plugin.
-           <a href="./assets/Miles Owens Resume.pdf">click here to download the PDF file.</a></p>
+          <a href="./assets/Miles Owens Resume.pdf">click here to download the PDF file.</a></p>
         </object>
       </div>
     </div>
@@ -24,25 +24,36 @@
       <div class="navbar">
         <div class="logo"></div>
         <ol class="menuitems">
-          <li><a id="home-link" href="#" class="current">home</a></li>
-          <li><a id="about-link" href="#">about</a></li>
-          <li><a id="blog-link" href="#">blog</a></li>
-          <li><a id="projects-link" href="#">projects</a></li>
-          <li><a id="resume-link" href="#">resume</a></li>
+          <li><a id="home-link" href="#home" class="current">home</a></li>
+          <li><a id="about-link" href="#about">about</a></li>
+          <li><a id="blog-link" href="#blog">blog</a></li>
+          <li><a id="projects-link" href="#projects">projects</a></li>
+          <li><a id="resume-link">resume</a></li>
         </ol>
       </div>
 
       <div class="container">
-        <div class="text_container">
-          <h1>Miles<br>Owens</h1>
-          <h2>Full-Stack Web Developer</h2>
-          <a href="mailto:milesrhowens@gmail.com" class="btn">contact!</a>
-        </div>
-        <div class="image_container">
-          <div class="imgbox">
-            <img src="./assets/face.png" alt="picture of Miles">
+        <div id="home" class="page">
+          <div class="text_container">
+            <h1>Miles<br>Owens</h1>
+            <h2>Full-Stack Web Developer</h2>
+            <a href="mailto:milesrhowens@gmail.com" class="btn">contact!</a>
           </div>
-          <span class="animblob"></span>
+          <div class="image_container">
+            <div class="imgbox">
+              <img src="./assets/face.png" alt="picture of Miles">
+            </div>
+            <span class="animblob"></span>
+          </div>
+        </div>
+        <div id="about" class="page">
+          About
+        </div>
+        <div id="blog" class="page">
+          Blog
+        </div>
+        <div id="projects" class="page">
+          Projects
         </div>
       </div>
 
