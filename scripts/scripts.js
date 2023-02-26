@@ -1,26 +1,7 @@
 $(document).ready(function(){
   var resumeIsOpen = false;
   var lastCurrentPage = $("#home-link");
-
-  /**
-   * Opens resume modal
-   */
-  var openResume = function() {
-    $(".popup-overlay, .popup-content").addClass("active");
-    $("#pages").addClass("dim");
-    resumeIsOpen = true;
-  };
-
-  /**
-   * Closes resume modal
-   */
-  var closeResume = function() {
-    $(".popup-overlay, .popup-content").removeClass("active");
-    $("#pages").removeClass("dim");
-    setCurrentPage(lastCurrentPage);
-    resumeIsOpen = false;
-  }
-
+  
   /**
    * Adds current class to appropriate link
    */
@@ -34,11 +15,26 @@ $(document).ready(function(){
   }
 
   /**
-   * Onclick func sets current class to clicked link
+   * Opens resume modal
    */
-  $("a").click(function() {
-    setCurrentPage(this);
-  });
+  var openResume = function() {
+    $(".popup-overlay, .popup-content").addClass("active");
+    $("#pages").addClass("dim");
+    resumeIsOpen = true;
+
+    setCurrentPage($("#resume-link")[0]);
+  };
+
+  /**
+   * Closes resume modal
+   */
+  var closeResume = function() {
+    $(".popup-overlay, .popup-content").removeClass("active");
+    $("#pages").removeClass("dim");
+    setCurrentPage(lastCurrentPage);
+    resumeIsOpen = false;
+  }
+
 
   /**
    * Onclick func closes resume modal if open
