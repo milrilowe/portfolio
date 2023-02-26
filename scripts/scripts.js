@@ -1,6 +1,5 @@
 $(document).ready(function(){
   var resumeIsOpen = false;
-  var resumeWasClicked = false;
   var lastCurrentPage = $("#home-link");
 
   /**
@@ -8,7 +7,8 @@ $(document).ready(function(){
    */
   var openResume = function() {
     $(".popup-overlay, .popup-content").addClass("active");
-    $("section").addClass("dim");
+    $("#pages").addClass("dim");
+    resumeIsOpen = true;
   };
 
   /**
@@ -16,15 +16,9 @@ $(document).ready(function(){
    */
   var closeResume = function() {
     $(".popup-overlay, .popup-content").removeClass("active");
-    $("section").removeClass("dim");
+    $("#pages").removeClass("dim");
     setCurrentPage(lastCurrentPage);
-  }
-
-  /**
-   * Clears current page class from all links
-   */
-  var clearCurrentPage = function() {
-    $("a").removeClass("current");
+    resumeIsOpen = false;
   }
 
   /**
@@ -35,7 +29,7 @@ $(document).ready(function(){
       lastCurrentPage = page;
     }
 
-    clearCurrentPage();
+    $("a").removeClass("current");
     $(page).addClass("current");
   }
 
@@ -43,35 +37,57 @@ $(document).ready(function(){
    * Onclick func sets current class to clicked link
    */
   $("a").click(function() {
-    if (!resumeWasClicked) {
-      setCurrentPage(this);
-    }
-  });
-
-  /**
-   * Onclick func opens/closes resume modal
-   */
-  $("#resume-link").click(function() {
-    if (!resumeIsOpen) {
-      openResume();
-      resumeIsOpen = true;
-    } else {
-      closeResume();
-      resumeIsOpen = false;
-    }
-
-    resumeWasClicked = true;
+    setCurrentPage(this);
   });
 
   /**
    * Onclick func closes resume modal if open
    */
-  $("section").on("click", function() {
-    if (resumeIsOpen && !resumeWasClicked) {
+  $("main").on("click", function(e) {
+    if (e.target === $("#resume-link")[0]) {
+      if (!resumeIsOpen) {
+        openResume();
+      } else {
+        closeResume();
+      }
+    } else {
       closeResume();
-      resumeIsOpen = false;
     }
-    
-    resumeWasClicked = false;
   });
+
+  /**
+   * OnScroll update current nav link
+   */
+  const sections = document.querySelectorAll("section");
+  const links = document.querySelectorAll(".navbar ol li a");
+  $("#pages").scroll(function (e) {
+    var current = "";
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const pageYOffset = e.originalEvent.srcElement.scrollTop;
+      if (pageYOffset >= sectionTop - 60) {
+        current = section.getAttribute("id"); 
+      }
+    });
+
+    links.forEach((a) => {
+      a.classList.remove("current");
+      if (a.classList.contains(current)) {
+        setCurrentPage(a);
+      }
+    });
+  });
+
+  /**
+   * Smooth scroll on anchor link click
+   */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 });
