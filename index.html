@@ -9,13 +9,26 @@
     <title>Miles Owens</title>
   </head>
   <body>
+
+    <!--Resume Modal-->
+    <div class="popup-overlay">
+      <div class="popup-content">
+        <object id="resume" data="./assets/Miles Owens Resume.pdf" type="application/pdf">
+          <p>Your web browser doesn't have a PDF plugin.
+           <a href="./assets/Miles Owens Resume.pdf">click here to download the PDF file.</a></p>
+        </object>
+      </div>
+    </div>
+
     <section>
       <div class="navbar">
         <div class="logo"></div>
         <ol class="menuitems">
           <li><a href="#">home</a></li>
+          <li><a href="#">about</a></li>
           <li><a href="#">blog</a></li>
           <li><a href="#">projects</a></li>
+          <li><a id="resume-link" href="#">resume</a></li>
         </ol>
       </div>
 
@@ -23,11 +36,11 @@
         <div class="text_container">
           <h1>Miles<br>Owens</h1>
           <h2>Full-Stack Web Developer</h2>
-          <a href="#" class="btn">contact!</a>
+          <a href="mailto:milesrhowens@gmail.com" class="btn">contact!</a>
         </div>
         <div class="image_container">
           <div class="imgbox">
-            <img src="assets/face.png" alt="picture of Miles">
+            <img src="./assets/face.png" alt="picture of Miles">
           </div>
           <span class="animblob"></span>
         </div>
@@ -44,5 +57,7 @@
 
       </div>
     </section>
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/scripts.js"></script>
   </body>
 </html>
