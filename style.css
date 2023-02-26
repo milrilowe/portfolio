@@ -16,7 +16,7 @@
 
 body {
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
   background: var(--primary_color);
 }
 
@@ -34,14 +34,6 @@ section {
   padding: 1.2vw 6vw;
   background-color: var(--primary_color);
   z-index: 1000;
-}
-
-.logo {
-  font-size: 3vw;
-  color: var(--tertiary_color);
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
 }
 
 .menuitems {
@@ -70,22 +62,21 @@ section {
 
 .container {
   display: flex;
-  min-height: 100vh;
+  max-height: 100vh;
   justify-content: center;
   position: relative;
+  flex-wrap: wrap;
 }
 
 .text_container {
-  width: 50%;
-  padding-left: 5rem;
-  padding-top: 5rem;
-
+  width: 100%;
+  padding: 15vw 10vw;
+  z-index: 100;
 }
 
 .text_container h1 {
-  font-size: 10vw;
-  font-weight: 900;
-  line-height: 10vw;
+  font-size: 18vw;
+  line-height: 18vw;
   text-transform: capitalize;
 }
 
@@ -98,7 +89,7 @@ section {
 
 .text_container h2 {
   color: var(--tertiary_color);
-  font-size: 2vw;
+  font-size: 5vw;
   font-weight: 300;
   text-align: left;
   margin-right: 10vw;
@@ -118,6 +109,11 @@ section {
   transition: 0.3s ease;
 }
 
+.text_container .btn {
+  margin-top: 2vw;
+  font-size: 2.5vw;
+}
+
 .text_container .btn:hover {
   letter-spacing: 2px;
   padding: 6px 18px;
@@ -127,6 +123,8 @@ section {
 .image_container {
   display: flex;
   justify-content: center;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .imgbox {
@@ -146,19 +144,18 @@ section {
   top: 50%;
   right: -15vw;
   transform: translateY(-50%);
-  z-index: 1000;
+  z-index: 100;
 }
 
 .icons .fa {
   width: 20vw;
-  padding: 1vw;
+  padding: 1.7vw;
   font-size: 2.5vw;
   cursor: pointer;
   background: var(--tertiary_color);
   transition: 0.5s ease;
-  border: solid;
-  border-color: var(--tertiary_color);
   margin-top: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 
 }
 
@@ -166,7 +163,7 @@ section {
   color: var(--quaternary_color);
   background-color: var(--primary_color);
   border-color: var(--secondary_color);
-  transform: translateX(-1vw);
+  transform: translateX(-10vw);
 }
 
 .icons .fa span {
@@ -185,8 +182,8 @@ section {
   position: absolute;
   top: 50%;
   left: 45%;
-  height: 40vw;
-  width: 40vw;
+  height: 80vh;
+  width: 80vw;
   transform: translate(-50%, -50%);
   background: var(--quaternary_color);
   animation: animate_blob 8s linear infinite;
@@ -210,63 +207,68 @@ section {
   }
 }
 
-@media screen and (max-width: 680px) {
-  body {
-    overflow: auto;
-  }
-
+@media screen and (max-width: 750px) {
   .container {
-    flex-wrap: wrap;
+    max-height: 100vh;
   }
 
   .text_container {
-    width: 100%;
-    pad: 15vw 10vw;
-    z-index: 100;
-  }
-
-  .text_container h1 {
-    font-size: 18vw;
-    line-height: 18vw;
-  }
-
-  .text_container h2 {
-    font-size: 5vw;
-  }
-
-  .text_container p {
-    font-size: 3vw;
-  }
-
-  .text_container btn {
-    margin-top: 2vw;
-    font-size: 2.5vw;
+    height: 40vh;
   }
 
   .image_container {
-    width: 100vw;
-    overflow: hidden;
-  }
-
-  .icons {
-    position: fixed;
-    z-index: 100;
-  }
-
-  .icons .fa {
-    padding: 1.7vw;
-  }
-
-  .icons .fa:hover {
-    transform: translateX(-10vw);
-  }
-
-  .animblob {
-    height: 80vw;
-    width: 80vw;
+    height: 60vh;
   }
 }
 
-@media screen and (min-width:681px) {
+@media screen and (min-width: 591px) and (max-width: 750px) {
+  .imgbox img {
+    position: fixed;
+    max-height: 60vh;
+    width: auto;
+    bottom: 0;
+    right: 0;
+  }
+}
 
+@media screen and (min-width: 751px) and (max-width: 1150px) {
+  .imgbox img {
+    position: fixed;
+    max-height: 80vh;
+    width: auto;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+@media screen and (min-width: 751px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-height: 100vh;
+  }
+
+  .text_container {
+    padding-top: 5rem;
+    padding-right: 5rem;
+    width: 50%;
+  }
+
+  .text_container h1 {
+    font-size: 10vw;
+    line-height: 10vw;
+  }
+
+  .text_container h2 {
+    font-size: 2vw;
+  }
+
+  .imgbox img {
+    position: fixed;
+    height: auto;
+    width: auto;
+    bottom: 0;
+    right: 0;
+  }
 }
