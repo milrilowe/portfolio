@@ -56,6 +56,14 @@ section {
 }
 
 .menuitems li:hover a {
+  color: var(--secondary_color);
+}
+
+.menuitems li .current {
+  color: var(--quaternary_color);
+}
+
+.menuitems li:hover .current {
   color: var(--quaternary_color);
 }
 
@@ -170,7 +178,6 @@ section {
   font-size: 1.8vw;
   bottom: 0.3vw;
   margin-left: 1.8vw;
-
 }
 
 .icons a {
@@ -310,10 +317,25 @@ section {
 .popup-overlay .active {
   position: fixed;
   flex-direction: column;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--primary_color);
+  animation: modal_slide .3s linear;
+}
+
+.section .dim {
+
+}
+
+@keyframes modal_slide {
+  0% {
+    top: -50%;
+  }
+
+  100% {
+    top: 50%;
+  }
 }
 
 
