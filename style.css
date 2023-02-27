@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700');
 
 :root {
-  --primary_color: #282830;
-  --secondary_color: #000;
-  --tertiary_color: #fff;
-  --quaternary_color: #ff8514;
+  --primary-color: #282830;
+  --secondary-color: #000;
+  --tertiary-color: #fff;
+  --quaternary-color: #ff8514;
+  --card-color: #171717;
 }
 
 * {
@@ -21,7 +22,7 @@ html {
 body {
   width: 100%;
   overflow: auto;
-  background: var(--primary_color);
+  background: var(--primary-color);
 }
 
 section {
@@ -36,7 +37,7 @@ section {
   align-items: center;
   justify-content: space-between;
   padding: 1.2vw 6vw;
-  background-color: var(--primary_color);
+  background-color: var(--primary-color);
   z-index: 1000;
 }
 
@@ -52,7 +53,7 @@ section {
 
 .menuitems li a {
   display: block;
-  color: var(--tertiary_color);
+  color: var(--tertiary-color);
   font-size: 1.6vh;
   letter-spacing: 4px;
   text-decoration: none;
@@ -60,15 +61,15 @@ section {
 }
 
 .menuitems li:hover a {
-  color: var(--secondary_color);
+  color: var(--secondary-color);
 }
 
 .menuitems li .current {
-  color: var(--quaternary_color);
+  color: var(--quaternary-color);
 }
 
 .menuitems li:hover .current {
-  color: var(--quaternary_color);
+  color: var(--quaternary-color);
 }
 
 .page {
@@ -114,14 +115,14 @@ section {
 }
 
 .text_container h1::first-line {
-  color: var(--tertiary_color);
+  color: var(--tertiary-color);
   letter-spacing: 5px;
   text-shadow: 0 5px 10px rgba(0,0,0,0.5);
 
 }
 
 .text_container h2 {
-  color: var(--tertiary_color);
+  color: var(--tertiary-color);
   font-size: 5vw;
   font-weight: 300;
   text-align: left;
@@ -132,7 +133,7 @@ section {
 .text_container .btn {
   display: inline-block;
   color: #222;
-  background: var(--tertiary_color);
+  background: var(--tertiary-color);
   font-size: 1.5vw;
   text-decoration: none;
   text-transform: capitalize;
@@ -150,7 +151,7 @@ section {
 .text_container .btn:hover {
   letter-spacing: 2px;
   padding: 6px 18px;
-  background-color: var(--quaternary_color);
+  background-color: var(--quaternary-color);
 }
 
 .image_container {
@@ -185,7 +186,7 @@ section {
   padding: 1.7vw;
   font-size: 2.5vw;
   cursor: pointer;
-  background: var(--tertiary_color);
+  background: var(--tertiary-color);
   transition: 0.5s ease;
   margin-top: 10px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.5);
@@ -193,9 +194,9 @@ section {
 }
 
 .icons .fa:hover {
-  color: var(--quaternary_color);
-  background-color: var(--primary_color);
-  border-color: var(--secondary_color);
+  color: var(--quaternary-color);
+  background-color: var(--primary-color);
+  border-color: var(--secondary-color);
   transform: translateX(-10vw);
 }
 
@@ -207,7 +208,7 @@ section {
 }
 
 .icons a {
-  color: var(--secondary_color);
+  color: var(--secondary-color);
 }
 
 .animblob {
@@ -217,7 +218,7 @@ section {
   height: 80vh;
   width: 80vw;
   transform: translate(-50%, -50%);
-  background: var(--quaternary_color);
+  background: var(--quaternary-color);
   animation: animate_blob 8s linear infinite;
 }
 
@@ -346,7 +347,7 @@ section {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--primary_color);
+  background-color: var(--primary-color);
   animation: modal_slide .3s linear;
   border: inset;
 }
@@ -356,7 +357,7 @@ object p {
 }
 
 object p a {
-  color: var(--quaternary_color)
+  color: var(--quaternary-color)
 }
 
 @keyframes modal_slide {
@@ -369,5 +370,97 @@ object p a {
   }
 }
 
+#projects {
+  justify-content: center;
+  align-items: center;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.card {
+  background-color: var(--card-color);
+  cursor: pointer;
+  height: 90vw;
+  width: 60vw;
+  position: relative;
+  border-radius: 10px;
+  left: calc(calc(100vw * 3) - 70vw);
+  margin-left: 40vw;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}
+
+#projects-cards:hover .card .card-border {
+  opacity: 1;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card::before, .card .card-border {
+  border-radius: inherit;
+  content:"";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.card::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06), 
+    transparent 40%
+  );
+  z-index: 3;
+}
 
 
+.card .card-border {
+  background: radial-gradient(
+    400px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.3), 
+    transparent 40%
+  );
+  z-index: 1;  
+}
+  
+.card .card-content {
+  background-color: var(--card-color);
+  border-radius: inherit;
+  height: calc(100% - 6px);
+  margin: 3px;
+  justify-content: center;
+  display: flex;
+  position: relative;
+  width: calc(100% - 6px);
+  z-index: 2;
+}
+
+.toggle {
+  position: absolute;
+  width: 100%;
+  height: 90vw;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.toggle .toggle-btn {
+  justify-content: center;
+  padding: 9vw;
+}
+
+.hidden {
+  visibility: hidden;
+}

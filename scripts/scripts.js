@@ -1,6 +1,8 @@
 $(document).ready(function(){
   var resumeIsOpen = false;
   var lastCurrentPage = $("#home-link");
+
+  var projectIndex = 1;
   
   /**
    * Adds current class to appropriate link
@@ -85,5 +87,72 @@ $(document).ready(function(){
             behavior: 'smooth'
         });
     });
-});
+  });
+
+  /**
+   * Glow-effect on cards
+   */
+  document.getElementById("projects-cards").onmousemove = (e) => {
+    for (const card of document.getElementsByClassName("card")) {
+      const rect = card.getBoundingClientRect(),
+        x = e.clientX - rect.left,
+        y = e.clientY - rect.top;
+
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    }
+  }
+
+  /**
+   * 
+   */
+  const hideToggle = (toggle) => {
+    toggle.addClass("hidden");
+  }
+
+  /**
+   * 
+   */
+  handleMoveProjectCarouselLeft = () => {
+    projectIndex--;
+
+    if (projectIndex < 1) {
+      hideToggle($("#left-toggle"));
+    }
+
+    $("#right-toggle").removeClass("hidden");
+    $("#projects-cards").css("left", `-${projectIndex}00vw`);
+  }
+
+  /**
+   * 
+   */
+  handleMoveProjectCarouselRight = () => {
+    projectIndex++;
+    
+    if (projectIndex > 5) {
+      hideToggle($("#right-toggle"));
+    }
+
+    $("#left-toggle").removeClass("hidden");
+    $("#projects-cards").css("left", `-${projectIndex}00vw`);
+
+    
+  }
+
+  /**
+   * 
+   */
+  $("#left-toggle").on("click", function() {
+    handleMoveProjectCarouselLeft();
+
+  });
+
+  /**
+   * 
+   */
+  $("#right-toggle").on("click", function() {
+    handleMoveProjectCarouselRight();
+
+  });
 });
