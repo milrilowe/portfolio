@@ -2,7 +2,7 @@ $(document).ready(function(){
   var resumeIsOpen = false;
   var lastCurrentPage = $("#home-link");
 
-  var projectIndex = 1;
+  var projectIndex = 0;
   
   /**
    * Adds current class to appropriate link
@@ -113,7 +113,7 @@ $(document).ready(function(){
   /**
    * 
    */
-  handleMoveProjectCarouselLeft = () => {
+  handleProjectToggleLeftClick = () => {
     projectIndex--;
 
     if (projectIndex < 1) {
@@ -127,24 +127,22 @@ $(document).ready(function(){
   /**
    * 
    */
-  handleMoveProjectCarouselRight = () => {
+  handleProjectToggleRightClick = () => {
     projectIndex++;
     
-    if (projectIndex > 5) {
+    if (projectIndex > 4) {
       hideToggle($("#right-toggle"));
     }
 
     $("#left-toggle").removeClass("hidden");
     $("#projects-cards").css("left", `-${projectIndex}00vw`);
-
-    
   }
 
   /**
    * 
    */
   $("#left-toggle").on("click", function() {
-    handleMoveProjectCarouselLeft();
+    handleProjectToggleLeftClick();
 
   });
 
@@ -152,7 +150,7 @@ $(document).ready(function(){
    * 
    */
   $("#right-toggle").on("click", function() {
-    handleMoveProjectCarouselRight();
+    handleProjectToggleRightClick();
 
   });
 });

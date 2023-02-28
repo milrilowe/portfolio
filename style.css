@@ -154,6 +154,10 @@ section {
   background-color: var(--quaternary-color);
 }
 
+.text_container p {
+  font-weight: 900;
+}
+
 .image_container {
   display: flex;
   justify-content: center;
@@ -245,6 +249,235 @@ section {
   }
 }
 
+.popup-overlay {
+  display: none;
+  visibility:hidden;
+}
+
+.popup-content {
+  display: none;
+  visibility:hidden;
+}
+
+.active {
+  display: flex;
+  visibility: visible;
+  z-index: 1001;
+}
+
+.popup-overlay .active {
+  position: fixed;
+  flex-direction: column;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--primary-color);
+  animation: modal_slide .3s linear;
+  border: inset;
+}
+
+object p {
+  padding: 2vw;
+}
+
+object p a {
+  color: var(--quaternary-color)
+}
+
+@keyframes modal_slide {
+  0% {
+    top: -50%;
+  }
+
+  100% {
+    top: 50%;
+  }
+}
+
+#projects {
+  justify-content: center;
+  align-items: center;
+}
+
+#projects .cards {
+  left: 0vw;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: left 500ms;
+}
+
+.card {
+  background-color: var(--card-color);
+  background-repeat: no-repeat;
+  background-size: auto 90vh;
+  background-attachment: fixed;
+  cursor: pointer;
+  height: 90vw;
+  width: 60vw;
+  position: relative;
+  border-radius: 10px;
+  left: calc(calc(100vw * 3) - 70vw);
+  margin-left: 40vw;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}
+
+#discover-spotify-card {
+  background-image: url("./assets/Discover\ Spotify.png");
+}
+
+#atelier-webstore-card {
+  background-image: url("./assets/schedule.png");
+}
+
+#address-book-card {
+  background-image: url("./assets/Address\ Book.png");
+}
+
+#guitar-piano-card {
+  background-image: url("./assets/Guitar\ Piano.png");
+}
+
+#chipotle-schedule-card {
+  background-image: url("./assets/schedule.png");
+}
+
+#yuumi-bot-card {
+  background-image: url("./assets/Yuumi\ Bot.png");
+}
+
+#projects-cards:hover .card .card-border {
+  opacity: 1;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card::before, .card .card-border {
+  border-radius: inherit;
+  content:"";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.card::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06), 
+    transparent 40%
+  );
+  z-index: 3;
+}
+
+
+.card .card-border {
+  background: radial-gradient(
+    400px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.3), 
+    transparent 40%
+  );
+  z-index: 1;  
+}
+
+
+.card .text_container {
+  font-size: 6vw;
+  font-weight: 900;
+  padding: 2vw 2vw;
+
+}
+
+.card .text_container .card-title {
+  color: var(--quaternary-color);
+}
+
+.card .text_container .card-subtitle {
+  font-size: 4vw;
+  color: var(--secondary-color);
+}
+
+.card .github-link {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 4;
+  bottom: 10vw;
+}
+
+.card .github-link a {
+  color: var(--quaternary-color);
+  position: absolute;
+}
+
+.toggle {
+  position: absolute;
+  width: 100%;
+  height: 90vw;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.toggle .toggle-btn {
+  justify-content: center;
+  padding: 9vw;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.absolute-title {
+  position: absolute;
+  top: 15vw;
+  left: 10vw;
+}
+
+.absolute-title h2 {
+  font-size: 18vw;
+  line-height: 18vw;
+  text-transform: capitalize;
+}
+
+.card .card-content {
+  border-radius: inherit;
+  height: calc(100% - 6px);
+  margin: 3px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 6px);
+  z-index: 4;
+}
+
+.card .card-content .image-wrapper {
+  max-height: 100%;
+}
+
+.card .card-content img {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+
 @media screen and (max-width: 750px) {
   .page {
     max-height: 100vh;
@@ -323,144 +556,4 @@ section {
     bottom: 0;
     right: 0;
   }
-}
-
-.popup-overlay {
-  display: none;
-  visibility:hidden;
-}
-
-.popup-content {
-  display: none;
-  visibility:hidden;
-}
-
-.active {
-  display: flex;
-  visibility: visible;
-  z-index: 1001;
-}
-
-.popup-overlay .active {
-  position: fixed;
-  flex-direction: column;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--primary-color);
-  animation: modal_slide .3s linear;
-  border: inset;
-}
-
-object p {
-  padding: 2vw;
-}
-
-object p a {
-  color: var(--quaternary-color)
-}
-
-@keyframes modal_slide {
-  0% {
-    top: -50%;
-  }
-
-  100% {
-    top: 50%;
-  }
-}
-
-#projects {
-  justify-content: center;
-  align-items: center;
-}
-
-.cards {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.card {
-  background-color: var(--card-color);
-  cursor: pointer;
-  height: 90vw;
-  width: 60vw;
-  position: relative;
-  border-radius: 10px;
-  left: calc(calc(100vw * 3) - 70vw);
-  margin-left: 40vw;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
-}
-
-#projects-cards:hover .card .card-border {
-  opacity: 1;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-.card::before, .card .card-border {
-  border-radius: inherit;
-  content:"";
-  height: 100%;
-  left: 0px;
-  opacity: 0;
-  position: absolute;
-  top: 0px;
-  transition: opacity 500ms;
-  width: 100%;
-}
-
-.card::before {
-  background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.06), 
-    transparent 40%
-  );
-  z-index: 3;
-}
-
-
-.card .card-border {
-  background: radial-gradient(
-    400px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.3), 
-    transparent 40%
-  );
-  z-index: 1;  
-}
-  
-.card .card-content {
-  background-color: var(--card-color);
-  border-radius: inherit;
-  height: calc(100% - 6px);
-  margin: 3px;
-  justify-content: center;
-  display: flex;
-  position: relative;
-  width: calc(100% - 6px);
-  z-index: 2;
-}
-
-.toggle {
-  position: absolute;
-  width: 100%;
-  height: 90vw;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  z-index: 1;
-}
-
-.toggle .toggle-btn {
-  justify-content: center;
-  padding: 9vw;
-}
-
-.hidden {
-  visibility: hidden;
 }
