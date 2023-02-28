@@ -430,6 +430,10 @@ object p a {
   padding: 9vw;
 }
 
+.toggle .toggle-btn .fa {
+  cursor: pointer;
+}
+
 .hidden {
   visibility: hidden;
 }
