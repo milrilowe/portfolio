@@ -570,10 +570,6 @@ object p a {
     font-size: 3vh;
   }
 
-  .card .github-link a {
-    padding-top: 3vh;
-  }
-
   .cards {
     margin-right: 3vw;
     justify-content: center;
@@ -589,10 +585,6 @@ object p a {
     left: 0;
   }
 
-  .card .github-link a {
-    padding-top: 3vw;
-  }
-
   .toggle {
     visibility: hidden;
   }
@@ -606,7 +598,7 @@ object p a {
   @media screen and (min-height:850px) {
     .card {
       max-height: calc(28vw * 1.5);
-      width: 28vw;
+      max-width: 28vw;
       margin-left: 2vw;
       margin-bottom: 2vw;
       left: 0;
@@ -617,7 +609,9 @@ object p a {
     }
 
     #projects .cards {
-      max-width: 99vw;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100vh;
     }
 
     .card .text_container .card-title {
