@@ -315,8 +315,9 @@ object p a {
 .card {
   background-color: var(--card-color);
   background-repeat: no-repeat;
-  background-size: auto 90vh;
   background-attachment: fixed;
+  background-size: auto 100vh;
+  background-position: 50%;
   cursor: pointer;
   height: 90vw;
   width: 60vw;
@@ -445,7 +446,7 @@ object p a {
 
 .absolute-title {
   position: absolute;
-  top: 15vw;
+  top: 5vh;
   left: 10vw;
 }
 
@@ -524,8 +525,8 @@ object p a {
     bottom: 0;
     right: 0;
   }
-}
 
+}
 @media screen and (min-width: 751px) {
   .page {
     display: flex;
@@ -541,12 +542,12 @@ object p a {
   }
 
   .text_container h1 {
-    font-size: 10vw;
-    line-height: 10vw;
+    font-size: 10vh;
+    line-height: 10vh;
   }
 
   .text_container h2 {
-    font-size: 2vw;
+    font-size: 2vh;
   }
 
   .imgbox img {
@@ -556,4 +557,76 @@ object p a {
     bottom: 0;
     right: 0;
   }
+
+  .card .text_container {
+    width: 100%;
+  }
+
+  .card .text_container .card-title {
+    font-size: 4vh;
+  }
+
+  .card .text_container .card-subtitle {
+    font-size: 3vh;
+  }
+
+  .card .github-link a {
+    padding-top: 3vh;
+  }
+
+  .cards {
+    margin-right: 3vw;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .card {
+    height: 40vh;
+    width: calc(40vh / 1.5);
+    margin-left: 3vw;
+    margin-bottom: 3vw;
+    left: 0;
+  }
+
+  .card .github-link a {
+    padding-top: 3vw;
+  }
+
+  .toggle {
+    visibility: hidden;
+  }
+
+  #projects .cards {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 120vh;
+  }
+
+  @media screen and (min-height:850px) {
+    .card {
+      max-height: calc(28vw * 1.5);
+      width: 28vw;
+      margin-left: 2vw;
+      margin-bottom: 2vw;
+      left: 0;
+    }
+
+    .cards {
+      margin-right: 2vw;
+    }
+
+    #projects .cards {
+      max-width: 99vw;
+    }
+
+    .card .text_container .card-title {
+      font-size: 3vh;
+    }
+  
+    .card .text_container .card-subtitle {
+      font-size: 2vh;
+    }
+  }
+ 
 }
