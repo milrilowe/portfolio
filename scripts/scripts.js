@@ -3,7 +3,7 @@ $(document).ready(function(){
   var lastCurrentPage = $("#home-link");
 
   var projectIndex = 0;
-  
+
   /**
    * Adds current class to appropriate link
    */
@@ -64,7 +64,7 @@ $(document).ready(function(){
       const sectionTop = section.offsetTop;
       const pageYOffset = e.originalEvent.srcElement.scrollTop;
       if (pageYOffset >= sectionTop - 60) {
-        current = section.getAttribute("id"); 
+        current = section.getAttribute("id");
       }
     });
 
@@ -89,29 +89,15 @@ $(document).ready(function(){
     });
   });
 
-  // /**
-  //  * Glow-effect on cards
-  //  */
-  // document.getElementById("projects-cards").onmousemove = (e) => {
-  //   for (const card of document.getElementsByClassName("card")) {
-  //     const rect = card.getBoundingClientRect(),
-  //       x = e.clientX - rect.left,
-  //       y = e.clientY - rect.top;
-
-  //     card.style.setProperty("--mouse-x", `${x}px`);
-  //     card.style.setProperty("--mouse-y", `${y}px`);
-  //   }
-  // }
-
   /**
-   * 
+   *
    */
   const hideToggle = (toggle) => {
     toggle.addClass("hidden");
   }
 
   /**
-   * 
+   *
    */
   handleProjectToggleLeftClick = () => {
     projectIndex--;
@@ -125,11 +111,11 @@ $(document).ready(function(){
   }
 
   /**
-   * 
+   *
    */
   handleProjectToggleRightClick = () => {
     projectIndex++;
-    
+
     if (projectIndex > 4) {
       hideToggle($("#right-toggle"));
     }
@@ -139,7 +125,7 @@ $(document).ready(function(){
   }
 
   /**
-   * 
+   *
    */
   $("#left-toggle").on("click", function() {
     handleProjectToggleLeftClick();
@@ -147,10 +133,36 @@ $(document).ready(function(){
   });
 
   /**
-   * 
+   *
    */
   $("#right-toggle").on("click", function() {
     handleProjectToggleRightClick();
+  });
 
+  /**
+   *
+   * @param {*} e
+   */
+  var handleMouseEnter = (e) => {
+    $(`#${e.currentTarget.id} .card-background`).css("filter", "blur(8px)");
+    $(`#${e.currentTarget.id} .card-background`).css("-webkit-filter", "blur(8px)");
+  }
+
+  /**
+   *
+   * @param {*} e
+   */
+  var handleMouseExit = (e) => {
+    $(`#${e.currentTarget.id} .card-background`).css("filter", "blur(0)");
+    $(`#${e.currentTarget.id} .card-background`).css("-webkit-filter", "blur(0)");
+  }
+
+  /**
+   *
+   */
+  $(".card").mouseover(function(e) {
+    handleMouseEnter(e);
+  }).mouseleave(function(e) {
+    handleMouseExit(e);
   });
 });

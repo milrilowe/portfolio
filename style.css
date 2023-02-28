@@ -315,9 +315,6 @@ object p a {
 .card {
   background-color: var(--card-color);
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: auto 100vh;
-  background-position: 50%;
   cursor: pointer;
   height: 90vw;
   width: 60vw;
@@ -326,33 +323,50 @@ object p a {
   left: calc(calc(100vw * 3) - 70vw);
   margin-left: 40vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 5px 10px rgba(0,0,0,0.5);
 }
 
-#discover-spotify-card {
+.card .card-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: auto 100vh;
+  background-position: 50%;
+  border-radius: 10px;
+  z-index: 4;
+}
+
+/* .card .card-background:hover {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+} */
+
+#discover-spotify-card .card-background {
   background-image: url("./assets/Discover\ Spotify.png");
 }
 
-#atelier-webstore-card {
-  background-image: url("./assets/schedule.png");
+#atelier-webstore-card .card-background {
+  background-image: url("./assets/Atelier\ Webstore.png");
 }
 
-#address-book-card {
+#address-book-card .card-background {
   background-image: url("./assets/Address\ Book.png");
 }
 
-#guitar-piano-card {
+#guitar-piano-card .card-background {
   background-image: url("./assets/Guitar\ Piano.png");
 }
 
-#chipotle-schedule-card {
+#chipotle-schedule-card .card-background {
   background-image: url("./assets/schedule.png");
 }
 
-#yuumi-bot-card {
+#yuumi-bot-card .card-background {
   background-image: url("./assets/Yuumi\ Bot.png");
 }
 
@@ -360,47 +374,21 @@ object p a {
   opacity: 1;
 }
 
-.card:hover::before {
-  opacity: 1;
-}
-
-.card::before, .card .card-border {
-  border-radius: inherit;
-  content:"";
-  height: 100%;
-  left: 0px;
-  opacity: 0;
-  position: absolute;
-  top: 0px;
-  transition: opacity 500ms;
-  width: 100%;
-}
-
-.card::before {
-  background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.06), 
-    transparent 40%
-  );
-  z-index: 3;
-}
-
-
 .card .card-border {
   background: radial-gradient(
     400px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.3), 
+    rgba(255, 255, 255, 0.3),
     transparent 40%
   );
-  z-index: 1;  
+  z-index: 1;
 }
 
 
 .card .text_container {
   font-size: 6vw;
   font-weight: 900;
-  padding: 2vw 2vw;
-
+  padding: 1vw 1vw;
+  height: 50%;
 }
 
 .card .text_container .card-title {
@@ -417,7 +405,9 @@ object p a {
   justify-content: center;
   position: relative;
   z-index: 4;
-  bottom: 10vw;
+  height: 50%;
+  align-items: flex-end;
+  padding-bottom: 10px;
 }
 
 .card .github-link a {
@@ -617,10 +607,10 @@ object p a {
     .card .text_container .card-title {
       font-size: 3vh;
     }
-  
+
     .card .text_container .card-subtitle {
       font-size: 2vh;
     }
   }
- 
+
 }
