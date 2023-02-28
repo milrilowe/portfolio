@@ -505,13 +505,12 @@ object p a {
   .imgbox img {
     position: absolute;
     max-height: 60vh;
-    width: auto;
     bottom: 0;
     right: 0;
   }
 }
 
-@media screen and (min-width: 751px) and (max-width: 1150px) {
+@media screen and (min-width: 751px) {
   .imgbox img {
     position: absolute;
     max-height: 80vh;
@@ -532,7 +531,6 @@ object p a {
   .text_container {
     padding-top: 5rem;
     padding-right: 5rem;
-    width: 50%;
   }
 
   .text_container h1 {
