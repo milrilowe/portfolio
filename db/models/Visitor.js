@@ -4,13 +4,13 @@ const visitorSchema = new mongoose.Schema({
   id: String,
   duration: Number,
   visits: Number,
-  resume: Number,
-  discoverSpotifyGitHub: Number,
-  atelierWebstoreGitHub: Number,
-  addressBookGitHub: Number,
-  chipotleScheduleGitHub: Number,
-  guitarPianoGitHub: Number,
-  yuumiBotGitHub: Number,
+  resume: Boolean,
+  discoverSpotifyGitHub: Boolean,
+  atelierWebstoreGitHub: Boolean,
+  addressBookGitHub: Boolean,
+  chipotleScheduleGitHub: Boolean,
+  guitarPianoGitHub: Boolean,
+  yuumiBotGitHub: Boolean,
 });
 
 const Visitor = mongoose.model('Visitor', visitorSchema);

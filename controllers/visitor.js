@@ -1,10 +1,41 @@
-const Visit = require('../../db/models/Visit');
-const Visitor = require('../../db/models/Visitor');
+const Visit = require('../db/models/Visit.js');
+const Visitor = require('../db/models/Visitor.js');
+
+/**
+ * Returns all unique visitors
+ * @returns all unique visitors
+ */
+exports.getAllVisitors = () => {
+  return Visitor.find({})
+    .then((documents) => {
+      return documents;
+    })
+    .catch((e) => {
+      console.log(`Trouble fetching all visitors.`, e);
+      throw new Error(`Trouble fetching all visitors.`);
+    });
+}
+
+/**
+ * Returns visitor by id
+ * @param {String} id: id of visitor to get
+ * @returns visitor
+ */
+exports.getVisitor = (id) => {
+  return Visitor.find({id: id})
+    .then((documents) => {
+      return documents[0];
+    })
+    .catch((e) => {
+      console.log(`Trouble fetching visitor [${id}].`, e);
+      throw new Error(`Trouble fetching visitor [${id}].`);
+    });
+}
 
 /**
  * Deletes visitor and their visits.
  * @param {Number} id of visitor to delete.
- * @returns
+ * @returns True if successful
  */
 exports.deleteVisitor = (id) => {
   return Visitor.delete({id: id})
@@ -21,20 +52,5 @@ exports.deleteVisitor = (id) => {
     .catch((e) => {
       console.log(`Trouble deleting visitor [${id}].`, e);
       throw new Error(`Trouble deleting visitor [${id}].`);
-    });
-}
-
-/**
- * Returns every visit for particular visitor
- * @param {Number} id: id of visitor
- */
-exports.getVisitsByVisitor = (id) => {
-  Visit.find({id: id})
-    .then((documents) => {
-      return documents;
-    })
-    .catch((e) => {
-      console.log(`Trouble fetching visits for visitor [${id}].`, e);
-      throw new Error(`Trouble fetching visits for visitor [${id}].`);
     });
 }

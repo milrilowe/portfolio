@@ -1,6 +1,11 @@
-const Visit = require('../../db/models/Visit');
-const Visitor = require('../../db/models/Visitor');
+const Visit = require('../db/models/Visit.js');
+const Visitor = require('../db/models/Visitor.js');
 
+/**
+ * Creates a new visitor with first visit data
+ * @param {Object} visit: first visit
+ * @returns visitor
+ */
 const createVisitor = (visit) => {
   return {
     id: visit.id,
@@ -16,23 +21,30 @@ const createVisitor = (visit) => {
   };
 }
 
+/**
+ * Updates visitor with visit data
+ * @param {Object} visitor: visitor to update
+ * @param {Object} visit: visit data
+ */
 const updateVisitor = (visitor, visit) => {
+
+  const booleans = ['resume', 'discoverSpotifyGitHub', 'atelierWebstoreGitHub', 'addressBookGitHub', 'chipotleScheduleGitHub', 'guitarPianoGitHub', 'yuumiBotGitHub'];
+
   visitor.duration += visit.duration;
   visitor.visits += 1;
-  visitor.resume = visit.resume;
-  visitor.discoverSpotifyGitHub = visit.discoverSpotifyGitHub;
-  visitor.atelierWebstoreGitHub = visit.atelierWebstoreGitHub;
-  visitor.addressBookGitHub = visit.addressBookGitHub;
-  visitor.chipotleScheduleGitHub = visit.chipotleScheduleGitHub;
-  visitor.guitarPianoGitHub = visit.guitarPianoGitHub;
-  visitor.yuumiBotGitHub = visit.yuumiBotGitHub;
+
+  for (boolean of booleans) {
+    visitor[boolean] = visitor[boolean] ? true : visit[boolean];
+  }
+
+  return visitor;
 }
 
 /**
  * Returns all visits by all visitors
  */
 exports.getAllVisits = () => {
-  Visit.find({})
+  return Visit.find({})
     .then((documents) => {
       return documents;
     })
@@ -43,30 +55,45 @@ exports.getAllVisits = () => {
 };
 
 /**
+ * Returns every visit for particular visitor
+ * @param {Number} id: id of visitor
+ */
+exports.getVisitsByVisitor = (id) => {
+  return Visit.find({id: id})
+    .then((documents) => {
+      return documents;
+    })
+    .catch((e) => {
+      console.log(`Trouble fetching visits for visitor [${id}].`, e);
+      throw new Error(`Trouble fetching visits for visitor [${id}].`);
+    });
+}
+
+/**
  * Adds a new visit
  * @param {Object} visit: data of visit
  * @returns: True if no errors
  */
 exports.addVisit = (visit) => {
-  return new Visit({visit}).save()
+  return new Visit(visit).save()
     .then(() => {
       let filter = {id: visit.id};
 
-      Visitor.find(filter)
+      return Visitor.find(filter)
         .then((documents) => {
           if (documents.length > 0) {
-            let visitor = { ...documents[0] };
+            console.log(documents[0])
+            let visitor = updateVisitor(documents[0], visit);
 
-            updateVisitor(visitor, visit);
-
-            Visitor.findOneAndUpdate(filter, visitor)
+            return Visitor.findOneAndUpdate(filter, visitor)
               .then(() => {
+                console.log(visitor)
                 return true;
               })
               .catch((e) => {
                 console.log(`Trouble updating visitor [${visitor.id}] with visit.`, e);
                 throw new Error(`Trouble updating visitor [${visitor.id}] with visit.`);
-              })
+              });
           } else {
             const visitor = createVisitor(visit);
 
@@ -88,6 +115,5 @@ exports.addVisit = (visit) => {
     .catch((e) => {
       console.log('Trouble saving visit.', e);
       throw new Error('Trouble saving visit.');
-    })
+    });
 }
-

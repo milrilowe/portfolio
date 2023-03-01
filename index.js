@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const axios = require('axios');
 
+const db = require('./db');
+
 const cookieParser = require('./middleware/cookieParser');
 const identifier = require('./middleware/identifier');
 const routes = require('./routes/index.js');

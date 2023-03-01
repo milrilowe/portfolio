@@ -43,7 +43,7 @@ window.addEventListener('beforeunload', () => {
   const duration = endTime - date;
 
   // Send a request to your server to track the visit duration
-  fetch('/test', {
+  fetch('/visits', {
     method: 'POST',
     body: JSON.stringify({ date, duration, resume, discoverSpotifyGitHub, atelierWebstoreGitHub, addressBookGitHub, chipotleScheduleGitHub, guitarPianoGitHub, yuumiBotGitHub }),
     headers: {

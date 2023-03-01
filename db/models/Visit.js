@@ -3,14 +3,14 @@ const mongoose = require('mongoose');
 const visitSchema = new mongoose.Schema({
   date: Date,
   id: String,
-  duration: String,
-  resume: Number,
-  discoverSpotifyGitHub: Number,
-  atelierWebstoreGitHub: Number,
-  addressBookGitHub: Number,
-  chipotleScheduleGitHub: Number,
-  guitarPianoGitHub: Number,
-  yuumiBotGitHub: Number,
+  duration: Number,
+  resume: Boolean,
+  discoverSpotifyGitHub: Boolean,
+  atelierWebstoreGitHub: Boolean,
+  addressBookGitHub: Boolean,
+  chipotleScheduleGitHub: Boolean,
+  guitarPianoGitHub: Boolean,
+  yuumiBotGitHub: Boolean,
 });
 
 const Visit = mongoose.model('Visit', visitSchema);
