@@ -38,7 +38,7 @@ exports.getVisitor = (id) => {
  * @returns True if successful
  */
 exports.deleteVisitor = (id) => {
-  return Visitor.delete({id: id})
+  return Visitor.deleteOne({id: id})
     .then(() => {
       return Visit.deleteMany({id: id})
         .then(() => {

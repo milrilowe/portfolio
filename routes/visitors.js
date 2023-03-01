@@ -42,7 +42,8 @@ router.get('/all', (req, res) => {
  * Deletes current visitor
  */
 router.delete('/', (req, res) => {
-  controller.deleteVisitor()
+  const id = req.cookies.id;
+  controller.deleteVisitor(id)
     .then(() => {
       res.status(204).send();
     })
