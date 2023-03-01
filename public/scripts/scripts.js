@@ -1,4 +1,7 @@
 $(document).ready(function(){
+  const links = document.querySelectorAll(".navbar ol li a");
+  const sections = document.querySelectorAll("section");
+
   var resumeIsOpen = false;
   var lastCurrentPage = $("#home-link");
 
@@ -56,8 +59,8 @@ $(document).ready(function(){
   /**
    * OnScroll update current nav link
    */
-  const sections = document.querySelectorAll("section");
-  const links = document.querySelectorAll(".navbar ol li a");
+
+
   $("#pages").scroll(function (e) {
     var current = "";
     sections.forEach((section) => {
