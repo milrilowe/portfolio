@@ -346,27 +346,27 @@ object p a {
 } */
 
 #discover-spotify-card .card-background {
-  background-image: url("./assets/Discover\ Spotify.png");
+  background-image: url("/assets/Discover\ Spotify.png");
 }
 
 #atelier-webstore-card .card-background {
-  background-image: url("./assets/Atelier\ Webstore.png");
+  background-image: url("/assets/Atelier\ Webstore.png");
 }
 
 #address-book-card .card-background {
-  background-image: url("./assets/Address\ Book.png");
+  background-image: url("/assets/Address\ Book.png");
 }
 
 #guitar-piano-card .card-background {
-  background-image: url("./assets/Guitar\ Piano.png");
+  background-image: url("/assets/Guitar\ Piano.png");
 }
 
 #chipotle-schedule-card .card-background {
-  background-image: url("./assets/schedule.png");
+  background-image: url("/assets/schedule.png");
 }
 
 #yuumi-bot-card .card-background {
-  background-image: url("./assets/Yuumi\ Bot.png");
+  background-image: url("/assets/Yuumi\ Bot.png");
 }
 
 #projects-cards:hover .card .card-border {

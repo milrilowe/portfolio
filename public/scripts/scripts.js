@@ -67,8 +67,6 @@ $(document).ready(function(){
   /**
    * OnScroll update current nav link
    */
-
-
   $("#pages").scroll(function (e) {
     var current = "";
     sections.forEach((section) => {
@@ -101,14 +99,14 @@ $(document).ready(function(){
   });
 
   /**
-   *
+   * Hides toggle button (if first or last element)
    */
   const hideToggle = (toggle) => {
     toggle.addClass("hidden");
   }
 
   /**
-   *
+   * Handles clicking to move Project cards to left
    */
   handleProjectToggleLeftClick = () => {
     projectIndex--;
@@ -122,7 +120,7 @@ $(document).ready(function(){
   }
 
   /**
-   *
+   * Handles clicking to move Project cards to right
    */
   handleProjectToggleRightClick = () => {
     projectIndex++;
@@ -136,7 +134,7 @@ $(document).ready(function(){
   }
 
   /**
-   *
+   * Toggle left
    */
   $("#left-toggle").on("click", function() {
     handleProjectToggleLeftClick();
@@ -144,14 +142,14 @@ $(document).ready(function(){
   });
 
   /**
-   *
+   * Toggle right
    */
   $("#right-toggle").on("click", function() {
     handleProjectToggleRightClick();
   });
 
   /**
-   *
+   * Blurs card on mouse enter
    * @param {*} e
    */
   var handleMouseEnter = (e) => {
@@ -160,7 +158,7 @@ $(document).ready(function(){
   }
 
   /**
-   *
+   * Unblurs card on mouse exit
    * @param {*} e
    */
   var handleMouseExit = (e) => {
@@ -169,7 +167,7 @@ $(document).ready(function(){
   }
 
   /**
-   *
+   * Handles blurring and unblurring card
    */
   $(".card").mouseover(function(e) {
     handleMouseEnter(e);
