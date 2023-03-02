@@ -7,18 +7,10 @@ const Visitor = require('../db/models/Visitor.js');
  * @returns visitor
  */
 const createVisitor = (visit) => {
-  return {
-    id: visit.id,
-    duration: visit.duration,
-    visits: 1,
-    resume: visit.resume,
-    discoverSpotifyGitHub: visit.discoverSpotifyGitHub,
-    atelierWebstoreGitHub: visit.atelierWebstoreGitHub,
-    addressBookGitHub: visit.addressBookGitHub,
-    chipotleScheduleGitHub: visit.chipotleScheduleGitHub,
-    guitarPianoGitHub: visit.guitarPianoGitHub,
-    yuumiBotGitHub: visit.yuumiBotGitHub,
-  };
+  let { date, ...visitor } = visit;
+  visitor.visits = 1;
+
+  return visitor;
 }
 
 /**
@@ -28,9 +20,10 @@ const createVisitor = (visit) => {
  */
 const updateVisitor = (visitor, visit) => {
 
-  const booleans = ['resume', 'discoverSpotifyGitHub', 'atelierWebstoreGitHub', 'addressBookGitHub', 'chipotleScheduleGitHub', 'guitarPianoGitHub', 'yuumiBotGitHub'];
+  const booleans = ['discoverSpotifyGitHub', 'atelierWebstoreGitHub', 'addressBookGitHub', 'chipotleScheduleGitHub', 'guitarPianoGitHub', 'yuumiBotGitHub'];
 
-  visitor.duration += visit.duration;
+  visitor.timeSpentSite += visit.timeSpentSite;
+  visitor.timeSpentResume += visit.timeSpentResume;
   visitor.visits += 1;
 
   for (boolean of booleans) {
@@ -82,13 +75,11 @@ exports.addVisit = (visit) => {
       return Visitor.find(filter)
         .then((documents) => {
           if (documents.length > 0) {
-            console.log(documents[0])
             let visitor = updateVisitor(documents[0], visit);
 
             return Visitor.findOneAndUpdate(filter, visitor)
-              .then(() => {
-                console.log(visitor)
-                return true;
+              .then((document) => {
+                return document;
               })
               .catch((e) => {
                 console.log(`Trouble updating visitor [${visitor.id}] with visit.`, e);
@@ -98,8 +89,8 @@ exports.addVisit = (visit) => {
             const visitor = createVisitor(visit);
 
             return new Visitor(visitor).save()
-              .then(() => {
-                return true;
+              .then((document) => {
+                return document;
               })
               .catch((e) => {
                 console.log(`Trouble saving new visitor [${visitor.id}].`, e);

@@ -41,8 +41,8 @@ exports.deleteVisitor = (id) => {
   return Visitor.deleteOne({id: id})
     .then(() => {
       return Visit.deleteMany({id: id})
-        .then(() => {
-          return true;
+        .then((documents) => {
+          return documents;
         })
         .catch((e) => {
           console.log(`Trouble deleting visits for visitor [${id}].`, e);

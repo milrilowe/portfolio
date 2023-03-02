@@ -4,6 +4,7 @@ const axios = require('axios');
 
 const db = require('./db');
 
+const logger = require('./middleware/logger');
 const cookieParser = require('./middleware/cookieParser');
 const identifier = require('./middleware/identifier');
 const routes = require('./routes/index.js');
@@ -12,6 +13,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(logger);
 app.use(cookieParser);
 app.use(identifier);
 
@@ -19,11 +21,9 @@ app.use(identifier);
 app.use('/', routes);
 app.use(express.static('public'));
 
-app.post('/test', (req, res) => {
-  console.log(req.body);
-  console.log(req.cookies);
-  res.sendStatus(200);
-})
+app.get('*', (req, res) => {
+  res.status(404).sendFile('public/404.html', { root: __dirname });
+});
 
 const PORT = process.env.PORT;
 const HOST = process.env.BASE_URL;

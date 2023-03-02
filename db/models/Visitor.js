@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const visitorSchema = new mongoose.Schema({
   id: String,
-  duration: Number,
   visits: Number,
-  resume: Boolean,
+  timeSpentSite: Number,
+  timeSpentResume: Number,
   discoverSpotifyGitHub: Boolean,
   atelierWebstoreGitHub: Boolean,
   addressBookGitHub: Boolean,

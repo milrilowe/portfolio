@@ -3,10 +3,12 @@ const axios = require('axios');
 const router = express.Router();
 const controller = require('../controllers/visit.js');
 
+const restrictUserAgent = require('../middleware/restrictUserAgent');
+
 /**
  * Gets all visits from database
  */
-router.get('/all', (req, res) => {
+router.get('/all', restrictUserAgent, (req, res) => {
   controller.getAllVisits()
     .then((documents) => {
       let visits = [];
@@ -26,7 +28,7 @@ router.get('/all', (req, res) => {
 /**
  * Gets all visitor's visits
  */
-router.get('/', (req, res) => {
+router.get('/', restrictUserAgent, (req, res) => {
   const id = req.cookies.id;
 
   controller.getVisitsByVisitor(id)
@@ -48,7 +50,7 @@ router.get('/', (req, res) => {
 /**
  * Saves visit to database
  */
-router.post('/', (req, res) => {
+router.post('/', restrictUserAgent, (req, res) => {
   const visit = { id: req.cookies.id, ...req.body };
 
   controller.addVisit(visit)

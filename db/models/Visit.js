@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const visitSchema = new mongoose.Schema({
   date: Date,
   id: String,
-  duration: Number,
-  resume: Boolean,
+  timeSpentSite: Number,
+  timeSpentResume: Number,
   discoverSpotifyGitHub: Boolean,
   atelierWebstoreGitHub: Boolean,
   addressBookGitHub: Boolean,

@@ -7,6 +7,9 @@ $(document).ready(function(){
 
   var projectIndex = 0;
 
+  const resumeOpened = new Event("resume-opened");
+  const resumeClosed = new Event("resume-closed");
+
   /**
    * Adds current class to appropriate link
    */
@@ -27,6 +30,8 @@ $(document).ready(function(){
     $("#pages").addClass("dim");
     resumeIsOpen = true;
 
+    document.dispatchEvent(resumeOpened);
+
     setCurrentPage($("#resume-link")[0]);
   };
 
@@ -36,8 +41,11 @@ $(document).ready(function(){
   var closeResume = function() {
     $(".popup-overlay, .popup-content").removeClass("active");
     $("#pages").removeClass("dim");
-    setCurrentPage(lastCurrentPage);
     resumeIsOpen = false;
+
+    document.dispatchEvent(resumeClosed);
+
+    setCurrentPage(lastCurrentPage);
   }
 
 

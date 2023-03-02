@@ -3,15 +3,22 @@ const axios = require('axios');
 const router = express.Router();
 const controller = require('../controllers/visitor.js');
 
+const restrictUserAgent = require('../middleware/restrictUserAgent');
+
 /**
  * Gets current visitor
  */
-router.get('/me', (req, res) => {
+router.get('/me', restrictUserAgent, (req, res) => {
   const id = req.cookies.id;
   controller.getVisitor(id)
     .then((document) => {
-      let {_id, __v, ...visitor} = document.toObject();
-      res.send(visitor);
+      if (document) {
+        let {_id, __v, ...visitor} = document.toObject();
+        res.send(visitor);
+
+      } else {
+        res.send({});
+      }
     })
     .catch((e) => {
       res.status(500).send(e);
@@ -21,7 +28,7 @@ router.get('/me', (req, res) => {
 /**
  * Gets all unique visitors
  */
-router.get('/all', (req, res) => {
+router.get('/all', restrictUserAgent, (req, res) => {
   controller.getAllVisitors()
     .then((documents) => {
       let visitors = [];
@@ -41,7 +48,7 @@ router.get('/all', (req, res) => {
 /**
  * Deletes current visitor
  */
-router.delete('/', (req, res) => {
+router.delete('/', restrictUserAgent, (req, res) => {
   const id = req.cookies.id;
   controller.deleteVisitor(id)
     .then(() => {
