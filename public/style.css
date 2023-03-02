@@ -2,7 +2,7 @@
 
 :root {
   --primary-color: #282830;
-  --secondary-color: #000;
+  --secondary-color: #0c0c0c;
   --tertiary-color: #fff;
   --quaternary-color: #ff8514;
   --card-color: #171717;
@@ -13,6 +13,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  color: var(--secondary-color);
 }
 
 html {
@@ -155,6 +156,7 @@ section {
 }
 
 .text_container p {
+  font-size: 1.8vh;
   font-weight: 900;
 }
 
