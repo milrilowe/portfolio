@@ -2,12 +2,10 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/visitor.js');
 
-const restrictUserAgent = require('../middleware/restrictUserAgent');
-
 /**
  * Gets current visitor
  */
-router.get('/me', restrictUserAgent, (req, res) => {
+router.get('/me', (req, res) => {
   const id = req.cookies.id;
   controller.getVisitor(id)
     .then((document) => {
@@ -27,7 +25,7 @@ router.get('/me', restrictUserAgent, (req, res) => {
 /**
  * Gets all unique visitors
  */
-router.get('/all', restrictUserAgent, (req, res) => {
+router.get('/all', (req, res) => {
   controller.getAllVisitors()
     .then((documents) => {
       let visitors = [];
@@ -47,7 +45,7 @@ router.get('/all', restrictUserAgent, (req, res) => {
 /**
  * Deletes current visitor
  */
-router.delete('/', restrictUserAgent, (req, res) => {
+router.delete('/', (req, res) => {
   const id = req.cookies.id;
   controller.deleteVisitor(id)
     .then(() => {

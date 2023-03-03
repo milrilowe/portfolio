@@ -7,8 +7,30 @@ $(document).ready(function(){
 
   var projectIndex = 0;
 
-  const resumeOpened = new Event("resume-opened");
-  const resumeClosed = new Event("resume-closed");
+  const visitorRetrieved = new Event("visitor-retrieved");
+
+  let visitor;
+
+
+
+  /**
+   * Gets info about vistor
+   * @returns info about visitor
+   */
+  let getVisitor = async () => {
+    let response = await fetch('/visitors/me', {
+      method: 'GET',
+    })
+
+    visitor = await response.json();
+  }
+
+  /**
+   * Triggers event listener when visitor information retrieved
+   */
+  getVisitor().then(() => {
+    document.dispatchEvent(visitorRetrieved);
+  });
 
   /**
    * Adds current class to appropriate link
@@ -27,10 +49,10 @@ $(document).ready(function(){
    */
   var openResume = function() {
     $(".popup-overlay, .popup-content").addClass("active");
-    $("#pages").addClass("dim");
+
     resumeIsOpen = true;
 
-    document.dispatchEvent(resumeOpened);
+    document.dispatchEvent(new Event("resume-opened"));
 
     setCurrentPage($("#resume-link")[0]);
   };
@@ -40,27 +62,22 @@ $(document).ready(function(){
    */
   var closeResume = function() {
     $(".popup-overlay, .popup-content").removeClass("active");
-    $("#pages").removeClass("dim");
+
     resumeIsOpen = false;
 
-    document.dispatchEvent(resumeClosed);
+    document.dispatchEvent(new Event("resume-closed"));
 
     setCurrentPage(lastCurrentPage);
   }
-
 
   /**
    * Onclick func closes resume modal if open
    */
   $("main").on("click", function(e) {
-    if (e.target === $("#resume-link")[0]) {
-      if (!resumeIsOpen) {
+    if ($(e.target).hasClass("resume-link") && !resumeIsOpen) {
         openResume();
-      } else {
+    } else if (resumeIsOpen) {
         closeResume();
-      }
-    } else {
-      closeResume();
     }
   });
 
@@ -91,10 +108,13 @@ $(document).ready(function(){
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
+        try {
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+              behavior: 'smooth'
+          });
+        } catch (e) {
 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        }
     });
   });
 
@@ -153,8 +173,10 @@ $(document).ready(function(){
    * @param {*} e
    */
   var handleMouseEnter = (e) => {
-    $(`#${e.currentTarget.id} .card-background`).css("filter", "blur(8px)");
-    $(`#${e.currentTarget.id} .card-background`).css("-webkit-filter", "blur(8px)");
+    if (window.innerWidth > 751) {
+      $(`#${e.currentTarget.id} .card-background`).css("background-image", `url(/assets/${e.currentTarget.id}-blur.png)`);
+      $(`#${e.currentTarget.id} .card-content`).css("visibility", "visible");
+    }
   }
 
   /**
@@ -162,8 +184,11 @@ $(document).ready(function(){
    * @param {*} e
    */
   var handleMouseExit = (e) => {
-    $(`#${e.currentTarget.id} .card-background`).css("filter", "blur(0)");
-    $(`#${e.currentTarget.id} .card-background`).css("-webkit-filter", "blur(0)");
+    if (window.innerWidth > 751) {
+      $(`#${e.currentTarget.id} .card-background`).css("background-image", `url(/assets/${e.currentTarget.id}.png)`);
+      $(`#${e.currentTarget.id} .card-content`).css("visibility", "hidden");
+    }
+
   }
 
   /**
@@ -174,4 +199,68 @@ $(document).ready(function(){
   }).mouseleave(function(e) {
     handleMouseExit(e);
   });
+
+  const projectsVisitedInnerHTML = () => {
+
+  }
+
+  const firstVisitInnerHTML = () => {
+    document.getElementById('visitor_views').innerHTML = 'Welcome! This is your first visit!';
+  }
+
+  const repeatVisitInnerHTML = () => {
+    const visitor_views = `You have contributed to ${visitor.visits + 1} of X total views (by Y unique viewers). In those ${visitor.visits + 1} visits, you have spent ${Math.floor((visitor.timeSpentSite + 1) / 1000)} seconds here.`;
+    document.getElementById('visitor_duration').innerHTML = visitor_views;
+  }
+
+  document.addEventListener("visit-project", function(visit) {
+    const projects = ['discoverSpotifyGitHub', 'atelierWebstoreGitHub', 'addressBookGitHub', 'chipotleScheduleGitHub', 'guitarPianoGitHub', 'yuumiBotGitHub']
+
+    visited = [];
+
+    for (project of projects) {
+      if (projects[project]) {
+        visited.push(project);
+      }
+    }
+
+
+  });
+
+  document.addEventListener("visit-resume", function(e) {
+    let visit = e.detail.visit;
+
+    resumePlea(visit);
+
+  });
+
+  const resumePlea = (visit) => {
+    let totalResumeDuration = (visitor.timeSpentResume / 1000) + (visit.timeSpentResume / 1000);
+
+    let totalResumeDurationString = () => {
+      let s = Math.floor(totalResumeDuration) + ' second';
+      if (s !== 1) {
+        s += 's'
+      }
+
+      return s;
+    }
+
+    if (totalResumeDuration > 0 && totalResumeDuration < 30) {
+      document.getElementById('resume_plea').innerHTML = `Okay. Cool. I noticed you looked at my resume for like, ${totalResumeDurationString()}. But is that really enough time to get a good impression of someone? <a href="#" class="resume-link">Please, please, please, please, PLEASE take a more thorough look.</a> I\'ve worked so hard on it. I built it using <a href="https://www.overleaf.com/" target="_blank">LaTeX</a>.`;
+    } else if (totalResumeDuration >= 30) {
+      document.getElementById('resume_plea').innerHTML = 'Okay. WOW! Thank you SO MUCH for taking a thorough look at my resume. It means a lot! Thank you!';
+    }
+  }
+
+  document.addEventListener("visitor-retrieved", function() {
+
+    resumePlea({timeSpentResume: 0});
+
+    if (Object.keys(visitor).length !== 0) {
+      repeatVisitInnerHTML();
+    } else {
+      firstVisitInnerHTML();
+    }
+  })
 });

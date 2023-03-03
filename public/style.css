@@ -103,7 +103,7 @@ section {
 
 .text_container {
   width: 100%;
-  height: 40vh;
+  height: 100%;
   padding: 15vw 10vw;
   z-index: 100;
   position: relative;
@@ -340,6 +340,7 @@ object p a {
   background-position: 50%;
   border-radius: 10px;
   z-index: 4;
+  transition: background-image 600ms;
 }
 
 /* .card .card-background:hover {
@@ -348,73 +349,81 @@ object p a {
 } */
 
 #discover-spotify-card .card-background {
-  background-image: url("/assets/Discover\ Spotify.png");
+  background-image: url("/assets/discover-spotify-card.png");
 }
 
 #atelier-webstore-card .card-background {
-  background-image: url("/assets/Atelier\ Webstore.png");
+  background-image: url("/assets/atelier-webstore-card.png");
 }
 
 #address-book-card .card-background {
-  background-image: url("/assets/Address\ Book.png");
+  background-image: url("/assets/address-book-card.png");
 }
 
 #guitar-piano-card .card-background {
-  background-image: url("/assets/Guitar\ Piano.png");
+  background-image: url("/assets/guitar-piano-card.png");
 }
 
 #chipotle-schedule-card .card-background {
-  background-image: url("/assets/schedule.png");
+  background-image: url("/assets/chipotle-schedule-card.png");
 }
 
 #yuumi-bot-card .card-background {
-  background-image: url("/assets/Yuumi\ Bot.png");
+  background-image: url("/assets/yuumi-bot-card.png");
 }
 
-#projects-cards:hover .card .card-border {
-  opacity: 1;
-}
-
-.card .card-border {
-  background: radial-gradient(
-    400px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.3),
-    transparent 40%
-  );
-  z-index: 1;
-}
-
-
-.card .text_container {
+.card a .text_container {
   font-size: 6vw;
   font-weight: 900;
-  padding: 1vw 1vw;
+  padding: 15px 15px;
   height: 50%;
+  display: flex;
+  flex-direction: column;
 }
 
-.card .text_container .card-title {
+.card a {
+  height: 100%;
+  width: 100%;
+}
+
+.card a .text_container .card-title {
   color: var(--quaternary-color);
 }
 
-.card .text_container .card-subtitle {
+.card a .text_container .card-subtitle {
   font-size: 4vw;
   color: var(--secondary-color);
 }
 
-.card .github-link {
+.card a .github-link {
   display: flex;
   justify-content: center;
   position: relative;
   z-index: 4;
   height: 50%;
+  width: 100%;
   align-items: flex-end;
   padding-bottom: 10px;
 }
 
-.card .github-link a {
-  color: var(--quaternary-color);
-  position: absolute;
+.card a .github-link {
+  position: relative;
 }
+
+.card a .github-link .fa {
+  color: var(--quaternary-color);
+}
+
+.card a:link { text-decoration: none; }
+
+
+.card a:visited { text-decoration: none; }
+
+
+.card a:hover { text-decoration: none; }
+
+
+.card a:active { text-decoration: none; }
 
 .toggle {
   position: absolute;
@@ -440,16 +449,11 @@ object p a {
 }
 
 .card .card-content {
-  border-radius: inherit;
-  height: calc(100% - 6px);
-  margin: 3px;
+  height: 100%;
   display: flex;
-  position: relative;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: calc(100% - 6px);
-  z-index: 4;
 }
 
 .card .card-content .image-wrapper {
@@ -477,6 +481,10 @@ object p a {
 
   .menuitems li a {
     font-size: 1vh;
+  }
+
+  .card .card-content {
+    visibility: visible !important;
   }
 }
 
@@ -506,6 +514,10 @@ object p a {
     width: auto;
     bottom: 0;
     right: 0;
+  }
+
+  .card .card-content {
+    visibility: hidden;
   }
 }
 
@@ -539,15 +551,15 @@ object p a {
     right: 0;
   }
 
-  .card .text_container {
+  .card a .text_container {
     width: 100%;
   }
 
-  .card .text_container .card-title {
+  .card a .text_container .card-title {
     font-size: 4vh;
   }
 
-  .card .text_container .card-subtitle {
+  .card a .text_container .card-subtitle {
     font-size: 3vh;
   }
 
@@ -595,11 +607,11 @@ object p a {
       max-width: 100vh;
     }
 
-    .card .text_container .card-title {
+    .card a .text_container .card-title {
       font-size: 3vh;
     }
 
-    .card .text_container .card-subtitle {
+    .card a .text_container .card-subtitle {
       font-size: 2vh;
     }
   }
