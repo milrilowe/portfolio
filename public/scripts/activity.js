@@ -15,8 +15,7 @@ let visit = {
   yuumiBotGitHub: false,
 }
 
-const gitHubLinks = document.querySelectorAll(".github-link a .fa");
-
+const gitHubLinks = document.querySelectorAll(".github-link");
 
 window.addEventListener('load', () => {
   timeSiteOpened = visit.date = Date.now();
@@ -41,17 +40,36 @@ for (link of gitHubLinks) {
   link.addEventListener('click', (e) => {
     const id = e.target.id;
 
-    if (id === 'discover-spotify-link') {
-      visit.discoverSpotifyGitHub = true;
-    } else if (id === 'atelier-webstore-link') {
-      visit.atelierWebstoreGitHub = true;
-    } else if (id === 'address-book-link') {
-      visit.addressBookGitHub = true;
-    } else if (id === 'chipotle-schedule-link') {
-      visit.guitarPianoGitHub = true;
-    } else if (id === 'yuumi-bot-link') {
-      visit.yuumiBotGitHub = true;
+    let node = e.target;
+
+    while (node.id !== 'root') {
+      let id = node.id;
+
+      if (id === 'discover-spotify-link') {
+        visit.discoverSpotifyGitHub = true;
+        break;
+      } else if (id === 'atelier-webstore-link') {
+        visit.atelierWebstoreGitHub = true;
+        break;
+      } else if (id === 'address-book-link') {
+        visit.addressBookGitHub = true;
+        break;
+      } else if (id === 'guitar-piano-link') {
+        visit.guitarPianoGitHub = true;
+        break;
+      } else if (id === 'chipotle-schedule-link') {
+        visit.chipotleScheduleGitHub = true;
+        break;
+      } else if (id === 'yuumi-bot-link') {
+        visit.yuumiBotGitHub = true;
+        break;
+      }
+
+      node = node.parentNode;
+
     }
+
+
 
     document.dispatchEvent(new CustomEvent("visit-project", {detail: {visit}}));
 

@@ -231,6 +231,7 @@ section {
 #resume {
   width: 90vw;
   height: 85vh;
+  max-width: calc(85vh * 1.8);
 }
 
 @keyframes animate_blob {
@@ -362,6 +363,8 @@ object p a {
 
 #guitar-piano-card .card-background {
   background-image: url("/assets/guitar-piano-card.png");
+  background-position-x: -40vw;
+  background-position-y: 15vh;
 }
 
 #chipotle-schedule-card .card-background {
@@ -395,7 +398,7 @@ object p a {
   color: var(--secondary-color);
 }
 
-.card a .github-link {
+.card a .card-content .github-logo {
   display: flex;
   justify-content: center;
   position: relative;
@@ -406,11 +409,11 @@ object p a {
   padding-bottom: 10px;
 }
 
-.card a .github-link {
+.card a .card-content .github-logo {
   position: relative;
 }
 
-.card a .github-link .fa {
+.card a .card-content .github-logo .fa {
   color: var(--quaternary-color);
 }
 
@@ -519,6 +522,18 @@ object p a {
   .card .card-content {
     visibility: hidden;
   }
+
+  #yuumi-bot-card .card-background {
+    background-image: url("/assets/yuumi-bot-card.png");
+    background-position-x: 40vw;
+    background-position-y: 10vh;
+  }
+
+  #address-book-card .card-background {
+    background-image: url("/assets/address-book-card.png");
+    background-position-x: 40vw;
+    background-position-y: -40vh;
+  }
 }
 
 @media screen and (min-width: 751px) {
@@ -616,4 +631,92 @@ object p a {
     }
   }
 
+}
+
+li {
+  color: var(--tertiary-color);
+}
+
+li a {
+  color: var(--tertiary-color)
+}
+
+#traffic {
+  justify-content: flex-start;
+}
+
+
+
+#traffic .text_container p {
+  color: var(--tertiary-color);
+  width: 70%;
+}
+
+#traffic .text_container h3 {
+  font-size: 4vh;
+  line-height: 4vh;
+}
+
+.project_plea {
+  margin-top: 10vh;
+}
+
+.project_plea .container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.project_plea input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.project_plea input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.project_plea input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.project_plea .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#resume_plea {
+  margin-top: 5vh;
 }

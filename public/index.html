@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/style.css">
     <title>Miles Owens</title>
   </head>
-  <body>
+  <body id="root">
 
     <!--Resume Modal-->
     <div class="popup-overlay">
@@ -75,84 +75,84 @@
           <div id="projects-cards" class="cards">
             <div id="discover-spotify-card" class="card">
               <div class="card-background"></div>
-              <a href="https://github.com/Spotify-Discovery/Spotify_DiscoveryV2" target="_blank">
+              <a id="discover-spotify-link" class="github-link" href="https://github.com/Spotify-Discovery/Spotify_DiscoveryV2" target="_blank">
                 <div class="card-content">
                   <div class="text_container">
                     <div class="card-title">Discover Spotify</div>
                     <div class="card-subtitle">React | Express</div>
                   </div>
-                  <div class="github-link">
-                    <i id="discover-spotify-link" class="fa fa-github fa-3x"><span></span></i>
+                  <div class="github-logo">
+                    <i class="fa fa-github fa-3x"><span></span></i>
                   </div>
                 </div>
               </a>
             </div>
             <div id="atelier-webstore-card" class="card">
               <div class="card-background"></div>
-              <a href="https://github.com/Hightower-FEC/rfc2209-FEC" target="_blank">
+              <a id="atelier-webstore-link" class="github-link" href="https://github.com/Hightower-FEC/rfc2209-FEC" target="_blank">
                 <div class="card-content">
                   <div class="text_container">
                     <div class="card-title">Atelier Webstore</div>
                     <div class="card-subtitle">React | Express</div>
                   </div>
-                  <div class="github-link">
-                    <i id="atelier-webstore-link" class="fa fa-github fa-3x"><span></span></i>
+                  <div class="github-logo">
+                    <i class="fa fa-github fa-3x"><span></span></i>
                   </div>
                 </div>
               </a>
             </div>
             <div id="address-book-card" class="card">
               <div class="card-background"></div>
-              <a href="https://github.com/milrilowe/address-book-owens-miles" target="_blank">
+              <a id="address-book-link" class="github-link" href="https://github.com/milrilowe/address-book-owens-miles" target="_blank">
                 <div class="card-content">
                   <div class="text_container">
                     <div class="card-title">Address Book</div>
                     <div class="card-subtitle">Ruby on Rails</div>
                   </div>
-                  <div class="github-link">
-                      <i id="address-book-link" class="fa fa-github fa-3x"><span></span></i>
+                  <div class="github-logo">
+                      <i class="fa fa-github fa-3x"><span></span></i>
                     </div>
                   </div>
                 </a>
             </div>
             <div id="guitar-piano-card" class="card">
               <div class="card-background"></div>
-              <a href="https://github.com/milrilowe/guitar-piano" target="_blank">
+              <a id="guitar-piano-link" class="github-link" href="https://github.com/milrilowe/guitar-piano" target="_blank">
                 <div class="card-content">
                   <div class="text_container">
                     <div class="card-title">Guitar Piano</div>
                     <div class="card-subtitle">React</div>
                   </div>
-                  <div class="github-link">
-                      <i id="guitar-piano-link" class="fa fa-github fa-3x"><span></span></i>
+                  <div class="github-logo">
+                      <i class="fa fa-github fa-3x"><span></span></i>
                     </div>
                   </div>
                 </a>
             </div>
             <div id="chipotle-schedule-card" class="card">
               <div class="card-background"></div>
-              <a href="https://github.com/milrilowe/Schedule" target="_blank">
+              <a id="chipotle-schedule-link" class="github-link" href="https://github.com/milrilowe/Schedule" target="_blank">
                 <div class="card-content">
                   <div class="text_container">
                     <div class="card-title">Chipotle Schedule Generator</div>
                     <div class="card-subtitle">Java</div>
                   </div>
-                  <div class="github-link">
-                      <i id="chipotle-schedule-link" class="fa fa-github fa-3x"><span></span></i>
+                  <div class="github-logo">
+                      <i class="fa fa-github fa-3x"><span></span></i>
                   </div>
                 </div>
               </a>
             </div>
             <div id="yuumi-bot-card" class="card">
               <div class="card-background"></div>
-              <a href="https://github.com/milrilowe/yuumi-bot" target="_blank">
+              <a id="yuumi-bot-link" class="github-link" href="https://github.com/milrilowe/yuumi-bot" target="_blank">
                 <div class="card-content">
                   <div class="text_container">
                     <div class="card-title">Yuumi Bot</div>
                     <div class="card-subtitle">Python</div>
                   </div>
-                  <div class="github-link">
-                      <i id="yuumi-bot-link" class="fa fa-github fa-3x"><span></span></i>
+                  <div class="github-logo">
+                      <i class="fa fa-github fa-3x"><span></span></i>
                     </div>
                   </div>
                 </a>
@@ -160,21 +160,23 @@
           </div>
         </section>
 
-        <!-- BLOG SECTION
-        <section id="blog" class="page">
-          Blog
-        </section> -->
-
         <!-- TRAFFIC SECTION -->
-        <!-- <section id="traffic" class="page">
+        <section id="traffic" class="page">
           <div class="text_container">
-            <p id="unique_views"></p>
-            <p id="visitor_duration"></p>
             <p id="resume_plea">Welp!  This is the last page, and you haven't checked out my resume, yet.  No worries - <a class="resume-link" href="#"> here's a handy link just for that.</a></p>
-            <h3>You forgot to check these out:</h3>
-            <div class="project_plea"></div>
+            <div class="project_plea">
+              <h3>You forgot to check these out:</h3>
+              <ul id="unseen-projects">
+                <a id="discover-spotify-link" class="github-link" href="https://github.com/Spotify-Discovery/Spotify_DiscoveryV2" target="_blank"><li>Discover Spotify</li></a>
+                <a id="atelier-webstore-link" class="github-link" href="https://github.com/Hightower-FEC/rfc2209-FEC" target="_blank"><li>Atelier Webstore</li></a>
+                <a id="address-book-link" class="github-link" href="https://github.com/milrilowe/address-book-owens-miles" target="_blank"><li>Address Book</li></a>
+                <a id="guitar-piano-link" class="github-link" href="https://github.com/milrilowe/guitar-piano" target="_blank"><li>Chipotle Schedule Generator</li></a>
+                <a id="chipotle-schedule-link" class="github-link" href="https://github.com/milrilowe/Schedule" target="_blank"><li>Guitar Piano</li></a>
+                <a id="yuumi-bot-link" class="github-link" href="https://github.com/milrilowe/yuumi-bot" target="_blank"><li>Yuumi Bot</li></a>
+              </ul>
+            </div>
           </div>
-        </section> -->
+        </section>
       </div>
     </main>
 

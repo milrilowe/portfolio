@@ -200,31 +200,17 @@ $(document).ready(function(){
     handleMouseExit(e);
   });
 
-  const projectsVisitedInnerHTML = () => {
-
-  }
-
   const firstVisitInnerHTML = () => {
     document.getElementById('visitor_views').innerHTML = 'Welcome! This is your first visit!';
   }
 
   const repeatVisitInnerHTML = () => {
     const visitor_views = `You have contributed to ${visitor.visits + 1} of X total views (by Y unique viewers). In those ${visitor.visits + 1} visits, you have spent ${Math.floor((visitor.timeSpentSite + 1) / 1000)} seconds here.`;
-    document.getElementById('visitor_duration').innerHTML = visitor_views;
   }
 
   document.addEventListener("visit-project", function(visit) {
-    const projects = ['discoverSpotifyGitHub', 'atelierWebstoreGitHub', 'addressBookGitHub', 'chipotleScheduleGitHub', 'guitarPianoGitHub', 'yuumiBotGitHub']
-
-    visited = [];
-
-    for (project of projects) {
-      if (projects[project]) {
-        visited.push(project);
-      }
-    }
-
-
+    visit = visit.detail.visit;
+    projectsPlea(visit);
   });
 
   document.addEventListener("visit-resume", function(e) {
@@ -247,15 +233,79 @@ $(document).ready(function(){
     }
 
     if (totalResumeDuration > 0 && totalResumeDuration < 30) {
-      document.getElementById('resume_plea').innerHTML = `Okay. Cool. I noticed you looked at my resume for like, ${totalResumeDurationString()}. But is that really enough time to get a good impression of someone? <a href="#" class="resume-link">Please, please, please, please, PLEASE take a more thorough look.</a> I\'ve worked so hard on it. I built it using <a href="https://www.overleaf.com/" target="_blank">LaTeX</a>.`;
+      document.getElementById('resume_plea').innerHTML = `I noticed you only looked at my resume for like, ${totalResumeDurationString()}. But is that really enough time to get a good impression of someone? <a href="#" class="resume-link">Please, please, please, please, PLEASE take a more thorough look.</a> I\'ve worked so hard on it. I built it using <a href="https://www.overleaf.com/" target="_blank">LaTeX</a>.`;
     } else if (totalResumeDuration >= 30) {
-      document.getElementById('resume_plea').innerHTML = 'Okay. WOW! Thank you SO MUCH for taking a thorough look at my resume. It means a lot! Thank you!';
+      document.getElementById('resume_plea').innerHTML = 'WOW! Thank you SO MUCH for taking a thorough look at my resume. It means a lot! Thank you!';
+    }
+  }
+
+  const projectsPlea = (visit) => {
+    let allProjectsVisited = true;
+
+    let projects = ['discoverSpotifyGitHub', 'atelierWebstoreGitHub', 'addressBookGitHub', 'chipotleScheduleGitHub', 'guitarPianoGitHub', 'yuumiBotGitHub'];
+    console.log(visit)
+    for (project of projects) {
+      if (!visit[project] && !visitor[project]) {
+        allProjectsVisited = false;
+      }
+    }
+
+    if (allProjectsVisited) {
+      document.querySelector("#traffic .text_container .project_plea").innerHTML = "<h3>Thank you for checking out all of my projects!</h3>";
+    }
+
+    if (visit.discoverSpotifyGitHub) {
+      try {
+        document.querySelector("#unseen-projects #discover-spotify-link").remove();
+      } catch (e) {
+
+      }
+    }
+
+    if (visit.atelierWebstoreGitHub) {
+      try {
+        document.querySelector("#unseen-projects #atelier-webstore-link").remove();
+      } catch (e) {
+
+      }
+    }
+
+    if (visit.addressBookGitHub) {
+      try {
+        document.querySelector("#unseen-projects #address-book-link").remove();
+      } catch (e) {
+
+      }
+    }
+
+    if (visit.guitarPianoGitHub) {
+      try {
+        document.querySelector("#unseen-projects #guitar-piano-link").remove();
+      } catch (e) {
+
+      }
+    }
+
+    if (visit.chipotleScheduleGitHub) {
+      try {
+        document.querySelector("#unseen-projects #chipotle-schedule-link").remove();
+      } catch (e) {
+
+      }
+    }
+
+    if (visit.yuumiBotGitHub) {
+      try {
+        document.querySelector("#unseen-projects #yuumi-bot-link").remove();
+      } catch (e) {
+
+      }
     }
   }
 
   document.addEventListener("visitor-retrieved", function() {
-
-    resumePlea({timeSpentResume: 0});
+    resumePlea(visitor);
+    projectsPlea(visitor);
 
     if (Object.keys(visitor).length !== 0) {
       repeatVisitInnerHTML();
