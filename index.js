@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const axios = require('axios');
+const path = require('path');
 
 const db = require('./db');
 
@@ -10,6 +10,7 @@ const identifier = require('./middleware/identifier');
 const routes = require('./routes/index.js');
 
 const app = express();
+const spotifyAPI = express();
 
 // Middleware
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use(identifier);
 // Routes
 app.use('/', routes);
 app.use(express.static('public'));
+app.use('/guitar-piano', express.static(path.join(__dirname, 'guitar-piano', 'build')))
 
 app.get('*', (req, res) => {
   res.status(404).sendFile('public/404.html', { root: __dirname });

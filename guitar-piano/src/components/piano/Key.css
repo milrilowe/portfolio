@@ -1,0 +1,21 @@
+
+.key {
+    --color: white;
+    position: relative;
+    background-color: var(--color);
+    height: 300px;
+    width: 60px;
+    border: 2px solid black;
+
+}
+
+.key.sharp {
+    position: relative;
+    background-color: black;
+    margin-left: -17px;
+    margin-right: -17px;
+    height: 200px;
+    width: 30px;
+    z-index: 2;
+    
+}

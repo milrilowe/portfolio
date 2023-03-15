@@ -1,0 +1,59 @@
+.fret {
+    --fret-color: #745d46;
+    --fret-border: rgb(70, 65, 64);
+    display: flex;
+    flex: 1;
+    border-right:10px solid;
+    border-image: linear-gradient(to left, #777, #bbb, #666) 1 100%;
+    justify-content: center;
+    align-items: center;
+    min-width: 20px;
+    flex-grow:var(--fret-ratio);
+}
+
+.fret.nut {
+    background: #161717;
+    min-width: 36px;
+    border-right: 12px solid;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-image: linear-gradient(to left, #bbb, #fff, #bbb) 1 100%;
+}
+
+/*    */
+
+.fret.singledot:after {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--fret-color);
+    border: 1px solid var(--fret-border);
+    top: 155px;
+    transform: translate(0, -50%);
+}
+
+.fret.doubledot:before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--fret-color);
+    border: 1px solid var(--fret-border);
+    top: 55px;
+    transform: translate(0, -50%);
+    opacity: 100;
+}
+
+.fret.doubledot:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--fret-color);
+    border: 1px solid var(--fret-border);
+    top: 245px;
+}
